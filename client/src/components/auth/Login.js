@@ -9,17 +9,18 @@ const Login = ({ handleLogin, history }) => {
     handleLogin(user, history)
   }
 
-  return (
+  return(
     <>
       <form onSubmit={handleSubmit}>
-        <input  
+        <input
           name="email"
           value={user.email}
           onChange={(e) => setUser({ ...user, email: e.target.value })}
+
           placeholder="Email"
           required
         />
-        <input  
+        <input
           name="password"
           value={user.password}
           onChange={(e) => setUser({ ...user, password: e.target.value })}
@@ -33,10 +34,10 @@ const Login = ({ handleLogin, history }) => {
   )
 }
 
-const ConnectedLogin = (props) => {
-  <AuthConsumer>  
+const ConnectedLogin = (props) => (
+  <AuthConsumer>
     { value => <Login {...value} {...props} /> }
-  </AuthConsumer>  
-}
- 
+  </AuthConsumer>
+)
+
 export default ConnectedLogin;
