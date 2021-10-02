@@ -1,49 +1,62 @@
 import { Link, withRouter } from 'react-router-dom';
 import { AuthConsumer } from '../../providers/AuthProvider';
+import { Menu } from 'semantic-ui-react';
 
-const Navbar = ({ user, handleLogout, history }) => {
+const Navbar = ({ user, handleLogout, history, location }) => {
 
   const rightNavItems = () => {
     if (user) {
       // links if the user is logged in
       return (
-        <>
-          <li onClick={() => handleLogout(history)}>
-            Logout
-          </li>
+        <Menu.Menu position='right'>
+          <Menu.Item
+            name='logout'
+            onClick={() => handleLogout(history)}
+          />  
           <Link to="/dash">
-            <li>Dashboard</li>
+          <Menu.Item
+              id='dashboard'
+              name='dashboard'
+              active={location.pathname === '/dash'}
+            />
           </Link>
-        </>
+        </Menu.Menu>
       )
     } else {
       // links if there is no user logged in 
       return(
-        <>
-          <Link to="/login">
-            <li>Login</li>
+        <Menu.Menu position='right'>
+          <Link to='/login'>
+            <Menu.Item
+              id='login'
+              name='login'
+              active={location.pathname === '/login'}
+            />
           </Link>
-          <Link to="/register">
-            <li>Register</li>
+          <Link to='/register'>
+            <Menu.Item
+              id='register'
+              name='register'
+              active={location.pathname === '/register'}
+            />
           </Link>
-        </>
+        </Menu.Menu>
       )
     }
   }
   return(
-    <>
-      <nav>
-        <ul>
-          {/* links regardless of login status */}
-          <Link to="/">
-            <li>
-              Home
-            </li>
-          </Link>
+    <div>
+      <Menu pointing secondary>
+        <Link to='/'>
+          <Menu.Item
+            name='home'
+            id='home'
+            active={location.pathname === '/'}
+          />
+        </Link>
           { rightNavItems() }
-        </ul>
-      </nav>
-    </>
+      </Menu>
+    </div>
   )
 }
 

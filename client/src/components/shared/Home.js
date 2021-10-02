@@ -1,5 +1,7 @@
+import { Header } from 'semantic-ui-react';
+
 const Home = () => (
-  <h1>Home Page</h1>
+  <Header as='h1' textAlign='center'>Home Page</Header>
 )
 
 export default Home;

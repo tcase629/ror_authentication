@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { AuthConsumer } from '../../providers/AuthProvider';
+import { Button, Header, Form, Segment } from 'semantic-ui-react'
 
 const Register = ({ handleRegister, history }) => {
   const [user, setUser] = useState({ email: "", password: "", passwordConfirmation: ""})
@@ -14,9 +15,10 @@ const Register = ({ handleRegister, history }) => {
   }
 
   return(
-    <>
-      <form onSubmit={handleSubmit}>
-        <input
+    <Segment basic>
+      <Header as='h1' textAlign='center'>Register</Header>
+      <Form onSubmit={handleSubmit}>
+        <Form.Input
           name="email"
           value={user.email}
           onChange={(e) => setUser({ ...user, email: e.target.value })}
@@ -24,7 +26,7 @@ const Register = ({ handleRegister, history }) => {
           placeholder="Email"
           required
         />
-        <input
+        <Form.Input
           name="password"
           value={user.password}
           onChange={(e) => setUser({ ...user, password: e.target.value })}
@@ -32,7 +34,7 @@ const Register = ({ handleRegister, history }) => {
           placeholder="Password"
           required
         />
-        <input
+        <Form.Input
           name="passwordConfirmation"
           value={user.passwordConfirmation}
           onChange={(e) => setUser({ ...user, passwordConfirmation: e.target.value })}
@@ -40,9 +42,11 @@ const Register = ({ handleRegister, history }) => {
           placeholder="Password Confirmation"
           required
         />
-        <button type="submit">Register</button>
-      </form>
-    </>
+        <Segment textAlign='center' basic>
+          <Button primary type="submit">Register</Button>
+        </Segment>
+      </Form>
+    </Segment>
   )
 }
 
